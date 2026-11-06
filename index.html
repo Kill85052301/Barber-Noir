@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Barber Noir: demonstração fictícia de portfólio de uma barbearia premium brasileira, inspirada na tradição e na precisão.">
+  <title>Barber Noir | Barbearia premium — projeto fictício</title>
+  <script>
+    // Prepara antes da primeira pintura; libera o conteúdo se a inicialização falhar.
+    (() => {
+      if (!window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+      document.documentElement.classList.add('motion-init');
+      window.noirMotionFallback = setTimeout(() => {
+        document.documentElement.classList.remove('motion-init', 'motion-ready');
+      }, 4000);
+    })();
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header>
+    <p>Barber Noir</p>
+    <nav aria-label="Navegação principal">
+      <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" aria-labelledby="titulo-inicio">
+      <img srcset="assets/images/pexels-4625644-480.webp 480w, assets/images/pexels-4625644-800.webp 800w, assets/images/pexels-4625644-1100.webp 1100w, assets/images/pexels-4625644-1400.webp 1400w" sizes="(max-width: 960px) 100vw, 50vw" class="hero-photo" src="assets/images/pexels-4625644-1400.webp" alt="Barbeiro finalizando o cabelo de um cliente com secador" width="1400" height="1800" fetchpriority="high" decoding="async"><h1 id="titulo-inicio">Barber Noir</h1>
+      <p>Estilo que marca. Precisão que define.</p>
+      <p>Uma experiência de cuidado masculino que une a tradição da barbearia clássica ao acabamento preciso. Luxo discreto, atenção aos detalhes e personalidade em cada corte.</p>
+      <a href="#contato">Agendar horário</a>
+    </section>
+
+    <section id="servicos" aria-labelledby="titulo-servicos">
+      <h2 id="titulo-servicos">Serviços</h2>
+      <p>Rituais de cuidado pensados para valorizar o seu estilo. Todos os serviços e preços abaixo são fictícios e ilustrativos.</p>
+      <article>
+        <h3>Corte de cabelo</h3>
+        <p>Consulta de estilo, corte com tesoura ou máquina e finalização cuidadosa para um visual alinhado à sua personalidade.</p>
+        <p>Preço ilustrativo: <strong>R$ 85,00</strong></p>
+      </article>
+      <article>
+        <h3>Aparar e desenhar a barba</h3>
+        <p>Modelagem da barba, definição dos contornos e acabamento com toalha quente para um cuidado inspirado nos rituais clássicos.</p>
+        <p>Preço ilustrativo: <strong>R$ 60,00</strong></p>
+      </article>
+      <article>
+        <h3>Combo corte + barba</h3>
+        <p>Corte de cabelo e modelagem da barba em uma experiência completa, com proporções harmoniosas e atenção a cada detalhe.</p>
+        <p>Preço ilustrativo: <strong>R$ 130,00</strong></p>
+      </article>
+    </section>
+
+    <section id="sobre" aria-labelledby="titulo-sobre">
+      <h2 id="titulo-sobre">Sobre a Barber Noir</h2>
+      <p>A Barber Noir é uma barbearia fictícia criada para celebrar a elegância dos cortes clássicos e a expressão individual. Sua proposta combina atendimento atencioso, técnica apurada e um momento de pausa na rotina.</p>
+      <p>O conceito visual foi pensado em preto, carvão, dourado e marfim: uma referência ao luxo clássico e à atmosfera acolhedora das barbearias tradicionais.</p>
+      <p>Esta página é uma demonstração de portfólio. A marca, sua história, os serviços e os dados apresentados são fictícios.</p>
+    </section>
+
+    <!-- Fotos Pexels: licença https://www.pexels.com/license/ -->
+    <section id="galeria" aria-labelledby="titulo-galeria">
+      <h2 id="titulo-galeria">Galeria</h2>
+      <p>Fotografias ilustrativas do universo da barbearia. Não retratam um estabelecimento real.</p>
+      <figure>
+        <img srcset="assets/images/pexels-7697218-360.webp 360w, assets/images/pexels-7697218-540.webp 540w, assets/images/pexels-7697218-800.webp 800w" sizes="(max-width: 600px) 90vw, (max-width: 960px) 45vw, (max-width: 1024px) 29vw, (max-width: 1391px) calc(30.6667vw - 18.6667px), 408px" src="assets/images/pexels-7697218-800.webp" alt="Cliente sentado na cadeira de uma barbearia" width="800" height="600" loading="lazy" decoding="async">
+        <figcaption>Ambiente: atendimento em uma barbearia.</figcaption>
+      </figure>
+      <figure>
+        <img srcset="assets/images/pexels-3998397-360.webp 360w, assets/images/pexels-3998397-540.webp 540w, assets/images/pexels-3998397-800.webp 800w" sizes="(max-width: 600px) 90vw, (max-width: 960px) 45vw, (max-width: 1024px) 29vw, (max-width: 1391px) calc(30.6667vw - 18.6667px), 408px" src="assets/images/pexels-3998397-800.webp" alt="Barbeiro cortando o cabelo de um cliente" width="800" height="600" loading="lazy" decoding="async">
+        <figcaption>Corte: cuidado em cada acabamento.</figcaption>
+      </figure>
+      <figure>
+        <img srcset="assets/images/pexels-3998417-360.webp 360w, assets/images/pexels-3998417-540.webp 540w, assets/images/pexels-3998417-800.webp 800w" sizes="(max-width: 600px) 90vw, (max-width: 960px) 45vw, (max-width: 1024px) 29vw, (max-width: 1391px) calc(30.6667vw - 18.6667px), 408px" src="assets/images/pexels-3998417-800.webp" alt="Barba sendo aparada com tesoura" width="800" height="600" loading="lazy" decoding="async">
+        <figcaption>Barba: precisão com tesoura.</figcaption>
+      </figure>
+      <figure>
+        <img srcset="assets/images/pexels-4625639-360.webp 360w, assets/images/pexels-4625639-540.webp 540w, assets/images/pexels-4625639-800.webp 800w" sizes="(max-width: 600px) 90vw, (max-width: 960px) 45vw, (max-width: 1024px) 29vw, (max-width: 1391px) calc(30.6667vw - 18.6667px), 408px" src="assets/images/pexels-4625639-800.webp" alt="Cliente com barba recebendo um corte de cabelo" width="800" height="600" loading="lazy" decoding="async">
+        <figcaption>Estilo: corte e barba.</figcaption>
+      </figure>
+      <figure>
+        <img srcset="assets/images/pexels-7697479-360.webp 360w, assets/images/pexels-7697479-540.webp 540w, assets/images/pexels-7697479-800.webp 800w" sizes="(max-width: 600px) 90vw, (max-width: 960px) 45vw, (max-width: 1024px) 29vw, (max-width: 1391px) calc(30.6667vw - 18.6667px), 408px" src="assets/images/pexels-7697479-800.webp" alt="Barbeiro preparando uma toalha para atendimento" width="800" height="600" loading="lazy" decoding="async">
+        <figcaption>Ritual de cuidado: preparação com toalha.</figcaption>
+      </figure>
+      <figure>
+        <img srcset="assets/images/pexels-7518742-360.webp 360w, assets/images/pexels-7518742-540.webp 540w, assets/images/pexels-7518742-800.webp 800w" sizes="(max-width: 600px) 90vw, (max-width: 960px) 45vw, (max-width: 1024px) 29vw, (max-width: 1391px) calc(30.6667vw - 18.6667px), 408px" src="assets/images/pexels-7518742-800.webp" alt="Profissional modelando a barba de um cliente" width="800" height="600" loading="lazy" decoding="async">
+        <figcaption>Atendimento: modelagem da barba.</figcaption>
+      </figure>
+    </section>
+
+    <section id="contato" aria-labelledby="titulo-contato">
+      <h2 id="titulo-contato">Contato e agendamento</h2>
+      <p>As informações desta seção são exclusivamente ilustrativas. Não há endereço para visita nem canal de atendimento ativo.</p>
+      <h3>Endereço fictício</h3>
+      <address>Rua Exemplo de Portfólio, nº 000<br>Bairro Ilustrativo — Cidade Fictícia, Brasil</address>
+      <h3>Horários ilustrativos de funcionamento</h3>
+      <ul>
+        <li>Terça a sexta-feira: das 10h às 20h.</li>
+        <li>Sábado: das 9h às 18h.</li>
+        <li>Domingo e segunda-feira: fechado.</li>
+      </ul>
+      <h3>Agendamento pelo WhatsApp</h3>
+      <p>Espaço reservado para um futuro link de agendamento pelo WhatsApp. Nenhum número real está vinculado a esta demonstração.</p>
+      <button type="button" disabled>Agendar pelo WhatsApp — indisponível nesta demonstração</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>Barber Noir — Estilo que marca. Precisão que define.</p>
+    <p>Site fictício para demonstração de portfólio. Todos os nomes, valores e dados de atendimento são ilustrativos.</p>
+    <p>Projeto fictício desenvolvido para demonstração de portfólio. Não representa um estabelecimento real e não realiza agendamentos.</p>
+    <a href="#inicio">Voltar ao início</a>
+    <p class="developer-signature">Desenvolvido por <span>Shaide</span></p>
+  </footer>
+</body>
+</html>
