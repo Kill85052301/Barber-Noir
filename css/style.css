@@ -38,6 +38,10 @@ nav a:hover { color: var(--ouro); }
 .hero-photo { position: absolute; inset: 0 0 0 auto; z-index: -2; width: 57%; height: 100%; object-position: center 40%; }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, var(--fundo) 35%, rgb(11 11 11 / 92%) 43%, transparent 72%); }
 @media (min-width: 1025px) {
+  .hero > .container {
+    margin-left: 60px;
+    margin-right: 0;
+  }
   .hero-photo {
     -webkit-mask-image: linear-gradient(to right, transparent, rgb(0 0 0 / 15%) 6%, rgb(0 0 0 / 55%) 14%, rgb(0 0 0 / 85%) 22%, #000 32%);
     mask-image: linear-gradient(to right, transparent, rgb(0 0 0 / 15%) 6%, rgb(0 0 0 / 55%) 14%, rgb(0 0 0 / 85%) 22%, #000 32%);
