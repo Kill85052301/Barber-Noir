@@ -1,81 +1,78 @@
-/* Entradas individuais, observadas uma vez e sem eventos de scroll. */
+/* Entradas individuais, preparadas antes da primeira exibição. */
 (() => {
-  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const root = document.documentElement;
-  if (!root.classList.contains('motion-init')) return;
-  const release = () => {
-    root.classList.remove('motion-init', 'motion-ready');
-    clearTimeout(window.noirMotionFallback);
-  };
-  if (motion.matches || !('IntersectionObserver' in window)) {
-    release();
-    return;
+  const raiz = document.documentElement;
+  if (!raiz.classList.contains('reveal-init')) return;
+
+  let observador;
+  const movimentoReduzido = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const pendentes = new Set();
+
+  function liberarConteudo() {
+    raiz.classList.remove('reveal-init', 'reveal-ready');
+    clearTimeout(window.noirRevealFallback);
+    observador?.disconnect();
+    pendentes.clear();
   }
 
   try {
-  const targets = Array.from(document.querySelectorAll('main > section > *'));
-  const pending = new Set(targets);
-  const active = new Set();
-  const observer = new IntersectionObserver((entries) => {
-    try {
-    const stagger = new Map();
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const target = entry.target;
-      const section = target.parentElement;
-      const order = stagger.get(section) || 0;
-      stagger.set(section, order + 1);
-      target.style.setProperty('--entrance-delay', `${Math.min(order, 3) * 80}ms`);
-      target.classList.add('reveal-enter');
-      active.add(target);
-      observer.unobserve(target);
-      pending.delete(target);
-      target.addEventListener('animationend', (event) => {
-        if (event.target !== target) return;
-        target.classList.remove('reveal-pending', 'reveal-enter');
-        target.style.removeProperty('--entrance-delay');
-        active.delete(target);
-      }, { once: true });
-    });
-    if (pending.size === 0) observer.disconnect();
-    } catch {
-      observer.disconnect();
-      release();
+    if (movimentoReduzido.matches) {
+      liberarConteudo();
+      return;
     }
-  }, { threshold: 0.08 });
 
-  targets.forEach((target) => {
-    target.classList.add('reveal-pending');
-    const image = target.matches('img') ? target : target.querySelector('img');
-    const observe = () => {
-      if (!motion.matches && pending.has(target)) observer.observe(target);
-    };
-    // Aguarda a foto: a entrada não termina enquanto a imagem ainda carrega.
-    if (image && !image.complete) {
-      const timeout = setTimeout(observe, 4000);
-      const ready = () => { clearTimeout(timeout); observe(); };
-      image.addEventListener('load', ready, { once: true });
-      image.addEventListener('error', ready, { once: true });
-    } else {
-      observe();
-    }
-  });
-  root.classList.add('motion-ready');
-  root.classList.remove('motion-init');
-  clearTimeout(window.noirMotionFallback);
-
-  motion.addEventListener('change', (event) => {
-    if (!event.matches) return;
-    observer.disconnect();
-    release();
-    pending.clear();
-    active.forEach((target) => {
-      target.classList.remove('reveal-enter');
-      target.style.removeProperty('--entrance-delay');
+    const elementos = document.querySelectorAll('[data-reveal]');
+    elementos.forEach((elemento) => {
+      elemento.classList.add('reveal-pending');
+      pendentes.add(elemento);
     });
-    active.clear();
-  });
+
+    observador = new IntersectionObserver((entradas) => {
+      try {
+        let ordem = 0;
+        entradas.forEach((entrada) => {
+          if (!entrada.isIntersecting) return;
+          const elemento = entrada.target;
+          elemento.style.setProperty('--reveal-delay', `${Math.min(ordem++, 2) * 45}ms`);
+          elemento.classList.add('reveal-enter');
+          observador.unobserve(elemento);
+          pendentes.delete(elemento);
+        });
+        if (pendentes.size === 0) observador.disconnect();
+      } catch {
+        liberarConteudo();
+      }
+    }, { threshold: 0 });
+
+    document.addEventListener('animationend', (evento) => {
+      if (evento.animationName !== 'noir-reveal') return;
+      evento.target.classList.remove('reveal-pending', 'reveal-enter');
+      evento.target.style.removeProperty('--reveal-delay');
+    });
+
+    // Navegação por teclado e âncoras nunca espera uma entrada visual.
+    function exibirDestino(elemento) {
+      const alvo = elemento?.closest('[data-reveal]');
+      if (!alvo) return;
+      alvo.classList.remove('reveal-pending', 'reveal-enter');
+      observador.unobserve(alvo);
+      pendentes.delete(alvo);
+    }
+    document.addEventListener('focusin', (evento) => exibirDestino(evento.target));
+    window.addEventListener('hashchange', () => {
+      exibirDestino(document.getElementById(location.hash.slice(1)));
+    });
+    movimentoReduzido.addEventListener('change', (evento) => {
+      if (evento.matches) liberarConteudo();
+    });
+    window.addEventListener('pageshow', (evento) => {
+      if (evento.persisted) liberarConteudo();
+    });
+
+    raiz.classList.add('reveal-ready');
+    raiz.classList.remove('reveal-init');
+    clearTimeout(window.noirRevealFallback);
+    elementos.forEach((elemento) => observador.observe(elemento));
   } catch {
-    release();
+    liberarConteudo();
   }
 })();
