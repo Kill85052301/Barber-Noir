@@ -78,7 +78,7 @@ figcaption { padding-block: .65rem; font-size: .875rem; }
 .rodape { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding-block: 1.5rem; font-size: .85rem; }
 .rodape strong { font: 1.25rem var(--serifa); }
 
-/* O menu nativo dispensa JavaScript e fica restrito às telas menores. */
+/* Menu compacto para celulares e tablets. */
 .menu-movel { display: none; }
 
 @media (max-width: 1024px) {
@@ -87,8 +87,8 @@ figcaption { padding-block: .65rem; font-size: .875rem; }
   .barra { min-height: 80px; gap: 1rem; padding-block: .75rem; }
   .navegacao-desktop { display: none; }
   .marca { font-size: 1.35rem; flex-shrink: 0; }
-  .barra > .botao { margin-left: auto; }
-  .menu-movel { display: block; position: relative; z-index: 5; }
+  .barra > .botao { display: none; }
+  .menu-movel { display: block; position: relative; z-index: 5; margin-left: auto; }
   .menu-movel .menu-botao {
     display: flex;
     align-items: center;
@@ -99,7 +99,6 @@ figcaption { padding-block: .65rem; font-size: .875rem; }
     border: 1px solid var(--linha);
     border-radius: 4px;
     color: var(--ouro);
-    font-size: .9rem;
     cursor: pointer;
     width: 46px;
     background: var(--fundo);
@@ -122,8 +121,6 @@ figcaption { padding-block: .65rem; font-size: .875rem; }
     border: 1px solid var(--linha);
     border-radius: 4px;
     font-size: 1rem;
-  }
-  .menu-movel nav {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-6px);
@@ -140,8 +137,7 @@ figcaption { padding-block: .65rem; font-size: .875rem; }
     pointer-events: auto;
     transition-delay: 0s;
   }
-  .barra > .botao { display: none; }
-  .menu-movel { margin-left: auto; }
+
   .menu-movel nav a { display: flex; align-items: center; min-height: 46px; padding: .5rem .75rem; }
   .menu-movel nav .botao { margin-top: .5rem; justify-content: center; }
   .botao { min-height: 48px; font-size: .9375rem; overflow-wrap: anywhere; }
@@ -217,11 +213,11 @@ figcaption { padding-block: .65rem; font-size: .875rem; }
 
 @media (max-width: 760px) {
   .hero { grid-template-columns: minmax(0, 1fr); gap: 1rem; padding-block: 1.5rem 0; }
-  .hero > .container { grid-column: 1; grid-row: 1; }
+
   .hero-photo { grid-column: 1; grid-row: 2; width: min(100%, 22rem); justify-self: center; }
   .apresentacao > p:last-of-type { max-width: 55ch; }
   .sobre { grid-template-columns: minmax(0, 1fr); }
-  .sobre img { width: 100%; }
+
 }
 
 @media (max-width: 600px) {
@@ -242,7 +238,7 @@ figcaption { padding-block: .65rem; font-size: .875rem; }
     background: linear-gradient(90deg, rgb(11 11 11 / 94%), rgb(11 11 11 / 68%));
   }
   .barra { min-height: 76px; }
-  .barra > .botao { display: none; }
+
   .menu-movel nav { width: min(20rem, calc(100vw - 2.5rem)); }
   .acoes { flex-direction: column; align-items: stretch; }
   .acoes .botao { flex: none; }
